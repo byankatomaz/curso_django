@@ -85,4 +85,49 @@ class Recursos(Base):
     
     def __str__(self):
         return self.nome
+
+
+class Planos(Base):
+    plano = models.CharField('Plano', max_length=100)
+    
+    class Meta:
+        verbose_name = 'Plano'
+        verbose_name_plural = 'Planos'
+        
+    def __str__(self) -> str:
+        return self.plano
+    
+    
+class Precos(Base):
+    ICONE_CHOICES = (
+        ('lni-package', 'Caixa'),
+        ('lni-drop', 'Gota'),
+        ('lni-star', 'Estrela'),
+    )
+    
+    preco = models.DecimalField('Recurso', max_digits=100, decimal_places=2)
+    plano = models.ForeignKey('core.planos', verbose_name='Plano', on_delete=models.CASCADE)
+    descricao = models.TextField('Descrição', max_length=200)
+    icone = models.CharField('Icone', max_length=16, choices=ICONE_CHOICES)
+    
+    class Meta:
+        verbose_name = 'Preço'
+        verbose_name_plural = 'Preços'
+    
+    def __str__(self):
+        return str(self.preco)
+    
+
+class Cliente(Base):
+    nome = models.CharField('Nome', max_length=100)
+    profissao = models.CharField('Profissão', max_length=100)
+    opiniao = models.TextField('Opinião', max_length=200)
+    imagem = StdImageField('Imagem', upload_to='equipe', variations={'thumb': {'width': 40, 'height': 40, 'crop': True}})
+
+    class Meta:
+        verbose_name = 'Cliente'
+        verbose_name_plural = 'Clientes'
+        
+    def __str__(self) -> str:
+        return self.nome
     

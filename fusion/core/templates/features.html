@@ -5,12 +5,12 @@
         <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">Awesome Features</h2>
         <div class="shape wow fadeInDown" data-wow-delay="0.3s"></div>
       </div>
+      
       <div class="row">
         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
           <div class="content-left">
 
-            {% for rec in recursos %}
-
+            {% for rec in recursos|slice:":3" %}
             <div class="box-item wow fadeInLeft" data-wow-delay="0.3s">
               <span class="icon">
                 <i class="{{ rec.icone }}"></i>
@@ -20,49 +20,32 @@
                 <p>{{ rec.descricao }}</p>
               </div>
             </div>
-
             {% endfor %}
 
           </div>
         </div>
+
         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
           <div class="show-box wow fadeInUp" data-wow-delay="0.3s">
             <img src="{% static 'img/feature/intro-mobile.png' %}" alt="">
           </div>
         </div>
+
         <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
           <div class="content-right">
 
-            <div class="box-item wow fadeInRight" data-wow-delay="0.3s">
-              <span class="icon">
-                <i class="lni-leaf"></i>
-              </span>
-              <div class="text">
-                <h4>Modern Design</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+            {% for rec in recursos|slice:"3:" %}
+              <div class="box-item wow fadeInRight" data-wow-delay="0.3s">
+                <span class="icon">
+                  <i class="{{ rec.icone }}"></i>
+                </span>
+                <div class="text">
+                  <h4>{{ rec.nome }}</h4>
+                  <p>{{ rec.descricao }}</p>
+                </div>
               </div>
-            </div>
-
-            <div class="box-item wow fadeInRight" data-wow-delay="0.6s">
-              <span class="icon">
-                <i class="lni-layers"></i>
-              </span>
-              <div class="text">
-                <h4>Multi-purpose Template</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-              </div>
-            </div>
-
-            <div class="box-item wow fadeInRight" data-wow-delay="0.9s">
-              <span class="icon">
-                <i class="lni-leaf"></i>
-              </span>
-              <div class="text">
-                <h4>Working Contact Form</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-              </div>
-            </div>
-
+            {% endfor %}
+            
           </div>
         </div>
       </div>
